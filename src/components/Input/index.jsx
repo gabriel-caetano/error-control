@@ -40,14 +40,14 @@ function Input({submit, options}) {
       <Card style={CardStyle}>
         <CardContent>
           <Typography style={{ fontSize: 16 }} color="textPrimary">
-            Conversor de códigos de linha
+            Controle de erros
           </Typography>
           <Typography style={{ fontSize: 14 }} color="textSecondary">
-            Preencha as informações abaixo para utilizar o conversor.
+            Preencha as informações abaixo para gerar os bits de redundância.
           </Typography>
         
           <FormControl style={{ margin: 0, width: '100%'}}>
-            <InputLabel id='oi'>Código de linha</InputLabel>
+            <InputLabel id='oi'>Tipo de redundância</InputLabel>
             <Select
               labelId='oi'
               id="select"
