@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Container } from '@material-ui/core';
 import Input from './components/Input';
 import Output from './components/Output';
-import converter, { convertions } from './utils/converter';
+import hamming from './utils/hamming';
 const AppStyle = {
   backgroundColor: '#CCC',
   maxWidth: '100vw',
@@ -12,21 +12,16 @@ const AppStyle = {
 };
 
 function App() {
-  const [encodedData, setEncodedData] = useState({
-    originalValue: '',
-    originalPoints: [],
-    convertedPoints: [],
-    typeName: null,
-  });
+  const [encodedData, setEncodedData] = useState({ input: '', output: '' });
 
   const updateData = async (data) => {
-    const newData = await converter(data);
+    const newData = await hamming(data);
     setEncodedData(newData);
   };
   return (
     <Container style={AppStyle}>
-      <Input submit={updateData} options={Object.keys(convertions)} />
-      <Output data={encodedData} />
+      <Input submit={updateData} />
+      <Output input={encodedData.input} output={encodedData.output} />
     </Container>
   );
 }

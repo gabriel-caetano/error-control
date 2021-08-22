@@ -1,5 +1,5 @@
 // import './index.css'
-import { Container, TextField, Select, Card, MenuItem, InputLabel, FormControl, CardContent, Typography } from '@material-ui/core'
+import { Container, TextField, Card, FormControl, CardContent, Typography } from '@material-ui/core'
 import { useState } from 'react'
 
 const ContainerStyle = {
@@ -22,9 +22,8 @@ const InputStyle = {
   verticalAlign: 'text-bottom'
 }
 
-function Input({submit, options}) {
+function Input({submit}) {
   const [data, setData] = useState('')
-  const [type, setType] = useState('')
  
   const handleBinaryInput = (e) => {
     const nonBinary = /[^0-1]+/g
@@ -32,7 +31,7 @@ function Input({submit, options}) {
     const fail = nonBinary.test(e.target.value)
     const clean = e.target.value.match(binary)
     if (!fail)
-      submit({data: clean[0], type})
+      submit(clean[0])
       setData(clean[0])
   }
   return (
@@ -40,35 +39,9 @@ function Input({submit, options}) {
       <Card style={CardStyle}>
         <CardContent>
           <Typography style={{ fontSize: 16 }} color="textPrimary">
-            Controle de erros
+            Código de Hamming
           </Typography>
-          <Typography style={{ fontSize: 14 }} color="textSecondary">
-            Preencha as informações abaixo para gerar os bits de redundância.
-          </Typography>
-        
           <FormControl style={{ margin: 0, width: '100%'}}>
-            <InputLabel id='oi'>Tipo de redundância</InputLabel>
-            <Select
-              labelId='oi'
-              id="select"
-              value={type}
-              style={InputStyle}
-              onChange={(event) => {
-                const newType = event.target.value
-                setType(newType)
-                if (data !== '')
-                  submit({data, type: newType})
-              }}
-            >
-              <MenuItem value="" key='a'>
-                <em>None</em>
-              </MenuItem>
-              {
-                options.map((option, idx) => (
-                  <MenuItem value={option} key={idx}>{option}</MenuItem>
-                ))
-              }
-            </Select>
             <TextField value={data} onChange={handleBinaryInput} style={InputStyle} label="Sinal de entrada" />
           </FormControl>
         </CardContent>

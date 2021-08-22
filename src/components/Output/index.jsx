@@ -1,5 +1,4 @@
-import { Container, Card, CardContent, Typography } from '@material-ui/core'
-import Graph from '../Graph'
+import { Container, Card, Typography } from '@material-ui/core'
 
 const ContainerStyle = {
   maxWidt: '100%',
@@ -12,26 +11,27 @@ const CardStyle = {
   padding: '20px 40px',
 }
 
+const ResStyle ={
+  fontFamily: 'monospace'
+}
 
-function Output({data}) {
+
+function Output({input, output}) {
   return (
     <Container style={ContainerStyle}>
       <Card style={CardStyle}>
-          {data.typeName && (
-            <>             
-              <Typography style={{ textAlign: 'center' }}>
-                {data.typeName}
-              </Typography>
-              <p>Input: {data.originalValue}</p>
-              <p>Output: {data.convertedPoints}</p>
-              {/* <Graph input={data.originalValue} points={data.convertedPoints} /> */}
-            </>
-          )}
-          {!data.typeName && (
+        {
+          input === '' ? (
             <Typography style={{ textAlign: 'center' }}>
-              Selecione o tipo de código de linha e o valor para realizar a conversão.
+              Digite um valor para realizar a conversão.
             </Typography>
-          )}
+          ) : (
+            <div style={ResStyle}>
+              <p>Input : {input}</p>
+              <p>Output: {output}</p>
+            </div>
+          )
+        }
       </Card>
     </Container>
   )
