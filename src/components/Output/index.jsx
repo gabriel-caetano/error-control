@@ -12,7 +12,8 @@ const CardStyle = {
 }
 
 const ResStyle ={
-  fontFamily: 'monospace'
+  fontFamily: 'monospace',
+  overflow: 'auto'
 }
 
 
