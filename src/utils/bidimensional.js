@@ -16,7 +16,7 @@ export default function bidimensional(input, size) {
       chunks[i] = chunks[i] + count;
     }
     let str = "";
-    for (let i = 0; i < size; i++) {
+    for (let i = 0; i < size + 1; i++) {
       let count = 0;
       for (let j in chunks) {
         count += chunks[j][i];
