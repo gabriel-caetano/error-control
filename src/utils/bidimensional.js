@@ -6,7 +6,7 @@ export default function bidimensional(input, size) {
       chunks.push(input.substring(i, i + size));
     }
     const last = chunks.length - 1;
-    chunks[last] = "0".repeat(size - chunks[last].length) + chunks[last];
+    chunks[last] += "0".repeat(size - chunks[last].length);
     const ret_input = chunks.join(" ");
     for (const i in chunks) {
       const count =
