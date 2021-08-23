@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { Container } from '@material-ui/core';
-import Input from './components/Input';
+import InputHamming from './components/InputHamming';
+import InputBiDimensional from './components/InputBiDimensional';
 import Output from './components/Output';
 import hamming from './utils/hamming';
+import bidimensional from './utils/bidimensional';
 const AppStyle = {
   backgroundColor: '#CCC',
   maxWidth: '100vw',
@@ -12,16 +14,24 @@ const AppStyle = {
 };
 
 function App() {
-  const [encodedData, setEncodedData] = useState({ input: '', output: '' });
+  const [hammingEncodedData, setHammingEncodedData] = useState({ input: '', output: '' });
+  const [biDimensionalEncodedData, setBiDimensionalEncodedData] = useState({ input: '', output: '' });
 
-  const updateData = async (data) => {
+  const updateHamingData = async (data) => {
     const newData = await hamming(data);
-    setEncodedData(newData);
+    setHammingEncodedData(newData);
   };
+  const updateBiDimensionalData = async (data, chunk) => {
+    const newData = await bidimensional(data, chunk);
+    setBiDimensionalEncodedData(newData)
+  };
+
   return (
     <Container style={AppStyle}>
-      <Input submit={updateData} />
-      <Output input={encodedData.input} output={encodedData.output} />
+      <InputHamming submit={updateHamingData} />
+      <Output input={hammingEncodedData.input} output={hammingEncodedData.output} />
+      <InputBiDimensional submit={updateBiDimensionalData} />
+      <Output input={biDimensionalEncodedData.input} output={biDimensionalEncodedData.output} />
     </Container>
   );
 }
