@@ -19,7 +19,7 @@ export default function bidimensional(input, size) {
     for (let i = 0; i < size + 1; i++) {
       let count = 0;
       for (let j in chunks) {
-        count += chunks[j][i];
+        count += parseInt(chunks[j][i]);
       }
       str += count % 2;
     }
