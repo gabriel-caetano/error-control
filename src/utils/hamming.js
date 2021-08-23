@@ -7,7 +7,7 @@ export default function hamming(input) {
     while (true) {
       if (input.length <= inputChar) break;
       if (count === currPow) {
-        arrRes.push('_');
+        arrRes.push("_");
         currPow *= 2;
       } else {
         arrRes.push(input[inputChar]);
@@ -32,8 +32,8 @@ export default function hamming(input) {
         return char;
       }
     });
-    const res = { input: arrRes.join(''), output: output.join('') };
+    const res = { input: arrRes.join(""), output: output.join("") };
     return res;
   }
-  return { input: '', output: '' };
+  return { input: "", output: "" };
 }
